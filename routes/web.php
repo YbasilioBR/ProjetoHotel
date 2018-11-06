@@ -11,6 +11,7 @@
 |
 */
 
+
 Route::get('/', function () {
     return view('Principal');
 });
@@ -28,6 +29,11 @@ Route::get('CadastrarUsuario', function () {
 
 Route::get('CadastrarTarefa' , function(){
     return view('Tarefa.create');
+});
+
+Route::get('CadastrarQuarto', function () { 
+
+    return view('QuartoLimpo.create');
 });
 
 Route::resource('usuarios', 'UsuarioController');

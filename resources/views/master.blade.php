@@ -33,7 +33,7 @@
                     <a href="tarefas">Tarefa</a>
                 </li>
                 <li>
-                    <a href="quartolimpo">Quarto Limpo</a>
+                    <a href="quartos">Quarto Limpo</a>
                 </li>
                 <li>
                     <a href="#">Relatórios</a>
@@ -42,6 +42,14 @@
         </div>
         
         @yield('content')
+
+
+        <script src="/js/jquery.min.js"></script>
+        <script src="/js/bootstrap.bundle.min.js"></script>
+
+        @yield('javascript')
+
+
 
 </div>
     </body>

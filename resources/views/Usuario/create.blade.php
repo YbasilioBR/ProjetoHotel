@@ -17,7 +17,7 @@
     </div>
     @endif
 
-    <form method="post" action="{{url('usuariosCadastro')}}">
+    <form method="post" action="{{url('usuarios')}}">
     {{csrf_field()}}
     <div id="page-content-wrapper">
             <div class="container-fluid">
@@ -26,19 +26,19 @@
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="inputEmail4">Nome</label>
-                            <input type="text" class="form-control" placeholder="Nome">
+                            <input type="text" name="nome" class="form-control" placeholder="Nome">
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="inputEmail4">Logon</label>
-                            <input type="email" class="form-control" id="inputEmail4" placeholder="Logon">
+                            <input type="text" name="logon" class="form-control" id="inputEmail4" placeholder="Logon">
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="inputPassword4">Senha</label>
-                            <input type="password" class="form-control" id="inputPassword4" placeholder="Senha">
+                            <input type="password" name="senha" class="form-control" id="inputPassword4" placeholder="Senha">
                         </div>
                     </div>
                     <label for="inputPassword4">Tipo</label>
@@ -48,10 +48,10 @@
                         <div class="btn-group btn-group-toggle" data-toggle="buttons">
                             
                             <label class="btn btn-secondary active">
-                                <input type="radio" name="options" id="option1" value="1" autocomplete="off" checked> Gerente
+                                <input type="radio" name="tipo" id="option1" value="1" autocomplete="off" checked> Gerente
                             </label>
                             <label class="btn btn-secondary">
-                                <input type="radio" name="options" id="option2" value="0" autocomplete="off"> Faxineiro(a)
+                                <input type="radio" name="tipo" id="option2" value="0" autocomplete="off"> Faxineiro(a)
                             </label>
                         </div>
                         </div>

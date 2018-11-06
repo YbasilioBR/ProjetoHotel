@@ -36,7 +36,20 @@ class UsuarioController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'nome'    =>  'required',
+            'logon'   =>  'required',
+            'senha'   =>  'required',
+            'tipo'    =>  'required'
+        ]);
+        $usuario = new Usuario([
+            'nome'    =>  $request->get('nome'),
+            'logon'   =>  $request->get('logon'),
+            'senha'   =>  $request->get('senha'),
+            'tipo'    =>  $request->get('tipo')
+        ]);
+        $usuario->save();
+        return redirect()->route('CadastrarUsuario')->with('success', 'Data Added');
     }
 
     /**
@@ -82,5 +95,11 @@ class UsuarioController extends Controller
     public function destroy(Usuario $usuario)
     {
         //
+    }
+
+    public function indexJson()
+    {
+        $usuarios = Usuario::all();
+        return json_encode($usuarios);
     }
 }

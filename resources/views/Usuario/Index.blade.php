@@ -39,7 +39,7 @@
             </tbody>
           </table>  
 
-          <a href="{{ url('/usuario/create') }}" class="btn btn-primary">Incluir</a>
+          <a href="{{ url('CadastrarUsuario') }}" class="btn btn-primary">Incluir</a>
 
     
         <script type="text/javascript" src="/js/jquery.min.js"></script>

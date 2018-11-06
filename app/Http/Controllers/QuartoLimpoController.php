@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\QuartoLimpo;
+use App\Usuario;
 use Illuminate\Http\Request;
 
 class QuartoLimpoController extends Controller
@@ -14,7 +15,7 @@ class QuartoLimpoController extends Controller
      */
     public function index()
     {
-        $quartos = QuartoLimpo::all();
+        $quartos = QuartoLimpo::all();        
         return view('QuartoLimpo.index', compact('quartos'));
     }
 
@@ -24,8 +25,9 @@ class QuartoLimpoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        //
+    {        
+        return view('QuartoLimpo.create');
+
     }
 
     /**
@@ -47,7 +49,7 @@ class QuartoLimpoController extends Controller
      */
     public function show(QuartoLimpo $quartoLimpo)
     {
-        //
+     
     }
 
     /**

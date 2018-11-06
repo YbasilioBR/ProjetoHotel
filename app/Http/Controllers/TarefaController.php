@@ -92,4 +92,10 @@ class TarefaController extends Controller
         $tarefa->delete();
         return redirect()->route('Tarefa.index')->with('success','Tarefa Excluida');
     }
+
+    public function indexJson()
+    {
+        $tarefas = Tarefa::all();
+        return json_encode($tarefas);
+    }
 }
