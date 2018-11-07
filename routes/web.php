@@ -17,7 +17,7 @@ use App\QuartoTarefas;
 
 
 Route::get('/', function () {
-    return view('Principal');
+    return view('Welcome');
 });
 
 Route::get('home', function () {
@@ -33,7 +33,7 @@ Route::get('/usuarios/editar/{id_usuario}', 'UsuarioController@edit');
 Route::post('/usuarios/{id_usuario}', 'UsuarioController@update');
 
 
-Route::get('/tarefas', 'TarefaController@index');
+
 Route::get('/tarefas/novo', 'TarefaController@create');
 Route::post('/tarefas', 'TarefaController@store');
 Route::get('/tarefas/apagar/{id_tarefa}', 'TarefaController@destroy');
@@ -48,21 +48,18 @@ Route::get('/quartos/editar/{id_quartolimpo}', 'QuartoLimpoController@edit');
 Route::post('/quartos/{id_quartolimpo}', 'QuartoLimpoController@update');
 
 
-Route::get('/tarefasQuartos', function () {
-    $quartos = QuartoLimpo::with("tarefas")->get();
-    foreach($quartos as $t) {
-        echo "Tarefa: " . $t->numeroQuarto . "<br>";
 
+Route::get('/', "HomeController@index");
+Route::post('/login', "HomeController@login");
 
-        if (count($t->tarefas ) > 0) {
-            echo "Projetos: <br>";
-            echo "<ul>";
-            foreach($t->tarefas as $q) {
-                echo "<li> Nome do projeto: " . $q->descricao . "</li>";
-            }
-            echo "</ul>";
-        }
-        echo "<hr>";
-    }
-    //return $desenvolvedores->toJson();
+Route::group(['middleware'=>['auth']],function(){
+    Route::get('/logout',function(){
+        Auth::logout();
+        return redirect()->route('login');
+    });
+    Route::get('/tarefas', 'TarefaController@index');
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
