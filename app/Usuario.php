@@ -12,8 +12,5 @@ class Usuario extends Model
     public $timestamps = false;
     protected $primaryKey = 'id_usuario';
 
-    public function quartos()
-    {
-      return $this->hasMany(QuartoLimpo::class, 'id_usuario');
-    }
+
 }

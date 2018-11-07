@@ -11,6 +11,10 @@
 |
 */
 
+use App\Tarefa;
+use App\QuartoLimpo;
+use App\QuartoTarefas;
+
 
 Route::get('/', function () {
     return view('Principal');
@@ -20,21 +24,45 @@ Route::get('home', function () {
     return view('Principal');
 });
 
-Route::resource('tarefas', 'TarefaController');
-Route::resource('tarefasCadastro', 'TarefaController');
 
-Route::get('CadastrarUsuario', function () { 
-    return view('Usuario.create'); 
+Route::get('/usuarios', 'UsuarioController@index');
+Route::get('/usuarios/novo', 'UsuarioController@create');
+Route::post('/usuarios', 'UsuarioController@store');
+Route::get('/usuarios/apagar/{id}', 'UsuarioController@destroy');
+Route::get('/usuarios/editar/{id_usuario}', 'UsuarioController@edit');
+Route::post('/usuarios/{id_usuario}', 'UsuarioController@update');
+
+
+Route::get('/tarefas', 'TarefaController@index');
+Route::get('/tarefas/novo', 'TarefaController@create');
+Route::post('/tarefas', 'TarefaController@store');
+Route::get('/tarefas/apagar/{id_tarefa}', 'TarefaController@destroy');
+Route::get('/tarefas/editar/{id_tarefa}', 'TarefaController@edit');
+Route::post('/tarefas/{id_tarefa}', 'TarefaController@update');
+
+Route::get('/quartos', 'QuartoLimpoController@index');
+Route::get('/quartos/novo', 'QuartoLimpoController@create');
+Route::post('/quartos', 'QuartoLimpoController@store');
+Route::get('/quartos/apagar/{id_quartolimpo}', 'QuartoLimpoController@destroy');
+Route::get('/quartos/editar/{id_quartolimpo}', 'QuartoLimpoController@edit');
+Route::post('/quartos/{id_quartolimpo}', 'QuartoLimpoController@update');
+
+
+Route::get('/tarefasQuartos', function () {
+    $quartos = QuartoLimpo::with("tarefas")->get();
+    foreach($quartos as $t) {
+        echo "Tarefa: " . $t->numeroQuarto . "<br>";
+
+
+        if (count($t->tarefas ) > 0) {
+            echo "Projetos: <br>";
+            echo "<ul>";
+            foreach($t->tarefas as $q) {
+                echo "<li> Nome do projeto: " . $q->descricao . "</li>";
+            }
+            echo "</ul>";
+        }
+        echo "<hr>";
+    }
+    //return $desenvolvedores->toJson();
 });
-
-Route::get('CadastrarTarefa' , function(){
-    return view('Tarefa.create');
-});
-
-Route::get('CadastrarQuarto', function () { 
-
-    return view('QuartoLimpo.create');
-});
-
-Route::resource('usuarios', 'UsuarioController');
-Route::resource('quartos', 'QuartoLimpoController');

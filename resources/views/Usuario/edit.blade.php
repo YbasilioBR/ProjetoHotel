@@ -3,29 +3,33 @@
 
 <div class="card border">
     <div class="card-body">
-        <form action="/usuarios" method="POST">
+            <form action="/usuarios/{{$usuario->id_usuario}}" method="POST">
             @csrf
             <div class="form-group">
                 <label for="nome">Nome</label>
                 <input type="text" class="form-control" name="nome" 
-                       id="nome" placeholder="Nome">
+            id="nome" placeholder="Nome" value="{{$usuario->nome}}">
             </div>
             <div class="form-group">
                 <label for="logon">Logon</label>
                 <input type="text" class="form-control" name="logon" 
-                       id="logon" placeholder="Logon">
+                       id="logon" placeholder="Logon" value="{{$usuario->logon}}">
             </div>
             <div class="form-group">
                 <label for="senha">Senha</label>
                 <input type="text" class="form-control" name="senha" 
-                       id="senha" placeholder="Senha">
+                       id="senha" placeholder="Senha" value="{{$usuario->senha}}">
             </div>
             <div class="form-group">
                 <label for="tipo">Tipo de usuário</label>
-                <select id="tipo" name="tipo" class="form-control"> 
-                    <option hidden >Selecionar</option>
-                    <option value = "1">Gerente</option>
+                <select id="tipo" name="tipo" class="form-control" > 
+                    @if($usuario->tipo == 1)
+                    <option value = "1" selected>Gerente</option>
                     <option value = "0">Faxineiro</option>
+                    @else
+                    <option value = "1">Gerente</option>
+                    <option value = "0" selected>Faxineiro</option>
+                    @endif
                 <select>
             </div>
             <button type="submit" class="btn btn-primary btn-sm">Salvar</button>

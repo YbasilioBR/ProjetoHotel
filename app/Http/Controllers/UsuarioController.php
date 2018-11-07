@@ -36,20 +36,14 @@ class UsuarioController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'nome'    =>  'required',
-            'logon'   =>  'required',
-            'senha'   =>  'required',
-            'tipo'    =>  'required'
-        ]);
-        $usuario = new Usuario([
-            'nome'    =>  $request->get('nome'),
-            'logon'   =>  $request->get('logon'),
-            'senha'   =>  $request->get('senha'),
-            'tipo'    =>  $request->get('tipo')
-        ]);
+
+        $usuario = new Usuario();
+        $usuario->nome = $request->input('nome');
+        $usuario->logon = $request->input('logon');
+        $usuario->senha = $request->input('senha');
+        $usuario->tipo = $request->input('tipo');
         $usuario->save();
-        return redirect()->route('CadastrarUsuario')->with('success', 'Data Added');
+        return redirect('/usuarios');
     }
 
     /**
@@ -69,9 +63,13 @@ class UsuarioController extends Controller
      * @param  \App\Usuario  $usuario
      * @return \Illuminate\Http\Response
      */
-    public function edit(Usuario $usuario)
+    public function edit($id_usuario)
     {
-        //
+        $usuario = Usuario::find($id_usuario);
+        if(isset($usuario)) {
+            return view('Usuario.edit', compact('usuario'));
+        }
+        return redirect('/usuarios');
     }
 
     /**
@@ -81,9 +79,17 @@ class UsuarioController extends Controller
      * @param  \App\Usuario  $usuario
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Usuario $usuario)
+    public function update(Request $request, $id_usuario)
     {
-        //
+        $usuario = Usuario::find($id_usuario);
+        if(isset($usuario)) {
+            $usuario->nome = $request->input('nome');
+            $usuario->logon = $request->input('logon');
+            $usuario->senha = $request->input('senha');
+            $usuario->tipo = $request->input('tipo');
+            $usuario->save();
+        }
+        return redirect('/usuarios');
     }
 
     /**
@@ -92,9 +98,13 @@ class UsuarioController extends Controller
      * @param  \App\Usuario  $usuario
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Usuario $usuario)
+    public function destroy($id_usuario)
     {
-        //
+        $usuario = Usuario::find($id_usuario);
+        if (isset($usuario)) {
+            $usuario->delete();
+        }
+        return redirect('/usuarios');
     }
 
     public function indexJson()

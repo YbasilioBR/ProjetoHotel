@@ -1,46 +1,76 @@
 @extends('master')
 @section('content')
 
-        <h2>Registro de quartos</h2>
+<div class="card border">
+  <div class="card-body">
+      <h5 class="card-title">Cadastro de Usuarios</h5>
+@if(count($quartos) > 0)
+<table class="table table-ordered table-hover">
+    <thead>
+        <tr>
+            <th>Numero do Quarto</th>
+            <th>Faxineiro</th>
+            <th>Data/Hora Inicio</th>
+            <th>Data/Hora Fim</th>
+            <th>Tarefas</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach($quartos as $quarto)
+        <tr>
+            <td>{{$quarto->numeroQuarto}}</td>
+            <td>{{$quarto->usuarios->nome}}</td>
+            <td>{{$quarto->dataInicio}}</td>
+            <td>{{$quarto->dataFim}}</td>
+            <td><button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modalTarefas">Tarefas</button></td>
+            <td>
+                <a href="/quartos/editar/{{$quarto->id_quartolimpo}}" class="btn btn-sm btn-primary">Editar</a>
+                <a href="/quartos/apagar/{{$quarto->id_quartolimpo}}" class="btn btn-sm btn-danger">Apagar</a>
+            </td>
+        </tr>
+        @endforeach                
+    </tbody>
+    </table>
+    @endif  
 
-        @if($message = Session::get('success'))
-            <div class="alert alert-success">
-            <p>{{$message}}</p>
+    <div class="modal fade" id="modalTarefas" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title" id="myModalLabel">Listar Tarefas</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              
+                  <table class="table">
+                      <thead>
+                      <tr>
+                          <th scope="">Descricao</th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                              
+                      </tbody>
+                      
+                  </table>
+              
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+              <button type="button" class="btn btn-primary">Gravar</button>
+            </div>
+          </div>
         </div>
-         @endif
-        
-        <table class="table">
-            <thead>
-              <tr>
-                <th scope="col">Nº do Quarto</th>
-                <th scope="col">Funcionário</th>
-                <th scope="col">Data Inicial</th>
-                <th scope="col">Data Final</th>
-                <th scope="col">Tarefas</th>
-              </tr>
-            </thead>
-            <tbody>
-            @foreach ($quartos as $key => $value)
-              <tr>
-                <input type="hidden" value="{{$value->numeroQuarto}}">
-                <td>{{$value->numeroQuarto}}</td>
-                <td>{{$value->usuarios->nome}}</td>
-                <td>{{$value->dataInicio}}</td>
-                <td>{{$value->dataFim}}</td>
-                <td><button class="btn btn-primary" ng-click="">Visualizar</button></td>
-              </tr>
-            @endforeach
-            </tbody>
-          </table>  
-          
-          <a href="{{ url('CadastrarQuarto') }}" class="btn btn-primary">Incluir</a>
-
-@section('javascript')
-    <script type="text/javascript">
-
-    </script>
-@endsection
-
-
+      </div>
+    
+  </div>
 </div>
+
+        <div class="card-footer">
+            <a href="/quartos/novo" class="btn btn-sm btn-primary" role="button">Nova categoria</a>
+        </div>
+
 @endsection

@@ -11,4 +11,10 @@ class Tarefa extends Model
     protected $fillable = ['descricao'];
     public $timestamps = false;
 
+    public function quartos()
+    {
+      return $this->belongsToMany('App\QuartoLimpo', 'quarto_tarefas', 'id_tarefa', 'id_quartolimpo');
+    }   
+
 }
+

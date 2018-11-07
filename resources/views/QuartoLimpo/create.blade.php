@@ -3,34 +3,18 @@
 
     <h2>Registar Quarto Limpo</h2>
 
-    <br>
-    @if(count($errors) > 0)
-    <div class="alert alert-danger">
-     <ul>
-     @foreach($errors->all() as $error)
-      <li>{{$error}}</li>
-     @endforeach
-     </ul>
-    </div>
-    @endif
-    @if(\Session::has('success'))
-    <div class="alert alert-success">
-     <p>{{ \Session::get('success') }}</p>
-    </div>
-    @endif
-
     <form method="post" action="{{url('quartos')}}">
     {{csrf_field()}}
   
         <div class="container-fluid">
             <div class="form-row">
                 <div class="form-group col-md-4">
-                    <label for="quartoNumero">Nº Do Quarto</label>
-                    <input class="form-control" name="quartoNumero" id="quartoNumero" type="number">
+                    <label for="numeroQuarto">Nº Do Quarto</label>
+                    <input class="form-control" name="numeroQuarto" type="number">
                 </div>
                 <div class="form-group col-md-4">
                         <label for="usuarios">Faxineiro(a)</label>
-                        <select id="usuarios" class="form-control"> 
+                        <select id="usuarios" name="id_usuario" class="form-control"> 
                             <option value="0">Selecionar</option>                       
                         </select>
                     </div>
@@ -41,11 +25,11 @@
             <div class="form-row">
                 <div class="form-group col-md-4">
                     <label for="inputCity">Inicio</label>
-                    <input class="form-control" type="datetime-local" value="2011-08-19T13:45:00" id="example-datetime-local-input">
+                <input class="form-control" type="datetime-local" value="{{date('Y-m-d\TH:i:s')}}" name="dataInicio" id="example-datetime-local-input">
                 </div>
                 <div class="form-group col-md-4">
                     <label for="inputCity">Fim</label>
-                    <input class="form-control" type="datetime-local" value="2011-08-19T13:45:00" id="example-datetime-local-input">
+                    <input class="form-control" type="datetime-local" value="{{date('Y-m-d\TH:i:s')}}" name="dataFim" id="example-datetime-local-input">
                 </div>
             </div>
 
@@ -113,7 +97,7 @@
                 console.log(data);
                 for(i=0; i<data.length; i++){
                     
-                    $('#corpo').append('<tr><td><input type="checkbox" id="tarefaCheck" value="'+data[i].id_tarefa+'"></td><td>'+data[i].descricao+'</td></tr>');
+                    $('#corpo').append('<tr><td><input type="checkbox" name="tarefas[]" value="'+data[i].id_tarefa+'"></td><td>'+data[i].descricao+'</td></tr>');
                     
                 }
             });

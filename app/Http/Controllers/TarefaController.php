@@ -36,14 +36,10 @@ class TarefaController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'descricao'    =>  'required'
-        ]);
-        $tarefa = new Tarefa([
-            'descricao'    =>  $request->get('descricao')
-        ]);
+        $tarefa = new Tarefa();
+        $tarefa->descricao = $request->input('descricao');
         $tarefa->save();
-        return redirect()->route('CadastrarTarefa')->with('success', 'Data Added');
+        return redirect('/tarefas');
     }
 
     /**
@@ -63,9 +59,13 @@ class TarefaController extends Controller
      * @param  \App\Tarefa  $tarefa
      * @return \Illuminate\Http\Response
      */
-    public function edit(Tarefa $tarefa)
+    public function edit($id_tarefa)
     {
-        //
+        $tarefa = Tarefa::find($id_tarefa);
+        if(isset($tarefa)) {
+            return view('Tarefa.edit', compact('tarefa'));
+        }
+        return redirect('/tarefas');
     }
 
     /**
@@ -75,9 +75,14 @@ class TarefaController extends Controller
      * @param  \App\Tarefa  $tarefa
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Tarefa $tarefa)
+    public function update(Request $request, $id_tarefa)
     {
-        //
+        $tarefa = Tarefa::find($id_tarefa);
+        if(isset($tarefa)) {
+            $tarefa->descricao = $request->input('descricao');
+            $tarefa->save();
+        }
+        return redirect('/tarefas');
     }
 
     /**
@@ -88,9 +93,11 @@ class TarefaController extends Controller
      */
     public function destroy($id_tarefa)
     {
-        $tarefa = Tarefa::find($id_tarefa);
-        $tarefa->delete();
-        return redirect()->route('Tarefa.index')->with('success','Tarefa Excluida');
+        $tarefa = Tarefa::find($id_usuario);
+        if (isset($tarefa)) {
+            $tarefa->tarefa();
+        }
+        return redirect('/tarefas');
     }
 
     public function indexJson()

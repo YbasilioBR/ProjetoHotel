@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\QuartoLimpo;
-use App\Usuario;
+use App\QuartoTarefas;
 use Illuminate\Http\Request;
 
-class QuartoLimpoController extends Controller
+class QuartoTarefasController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +14,7 @@ class QuartoLimpoController extends Controller
      */
     public function index()
     {
-        $quartos = QuartoLimpo::all();        
-        return view('QuartoLimpo.index', compact('quartos'));
+        //
     }
 
     /**
@@ -25,9 +23,8 @@ class QuartoLimpoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {        
-        return view('QuartoLimpo.create');
-
+    {
+        //
     }
 
     /**
@@ -38,40 +35,27 @@ class QuartoLimpoController extends Controller
      */
     public function store(Request $request)
     {
-        $quarto = new QuartoLimpo();
-        $quarto->numeroQuarto = $request->input('numeroQuarto');
-        $quarto->id_usuario = $request->input('id_usuario');
-        $quarto->dataInicio = $request->input('dataInicio');
-        $quarto->dataFim = $request->input('dataFim');
-        $tarefas = $request->all('tarefas');
-        $quarto->save();
-
-        foreach($tarefas as $key => $value){
-            $quarto->tarefas()->attach($value);
-        }
-        
-       return redirect('/quartos');
-
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\QuartoLimpo  $quartoLimpo
+     * @param  \App\QuartoTarefas  $quartoTarefas
      * @return \Illuminate\Http\Response
      */
-    public function show(QuartoLimpo $quartoLimpo)
+    public function show(QuartoTarefas $quartoTarefas)
     {
-     
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\QuartoLimpo  $quartoLimpo
+     * @param  \App\QuartoTarefas  $quartoTarefas
      * @return \Illuminate\Http\Response
      */
-    public function edit(QuartoLimpo $quartoLimpo)
+    public function edit(QuartoTarefas $quartoTarefas)
     {
         //
     }
@@ -80,10 +64,10 @@ class QuartoLimpoController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\QuartoLimpo  $quartoLimpo
+     * @param  \App\QuartoTarefas  $quartoTarefas
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, QuartoLimpo $quartoLimpo)
+    public function update(Request $request, QuartoTarefas $quartoTarefas)
     {
         //
     }
@@ -91,10 +75,10 @@ class QuartoLimpoController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\QuartoLimpo  $quartoLimpo
+     * @param  \App\QuartoTarefas  $quartoTarefas
      * @return \Illuminate\Http\Response
      */
-    public function destroy(QuartoLimpo $quartoLimpo)
+    public function destroy(QuartoTarefas $quartoTarefas)
     {
         //
     }
