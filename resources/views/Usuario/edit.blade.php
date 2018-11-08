@@ -3,7 +3,7 @@
 
 <div class="card border">
     <div class="card-body">
-            <form action="/usuarios/{{$usuario->id_usuario}}" method="POST">
+            <form id="form_usuario" action="/usuarios/{{$usuario->id_usuario}}" method="POST">
             @csrf
             <div class="form-group">
                 <label for="nome">Nome</label>
@@ -38,8 +38,46 @@
     </div>
 </div>
 
-    <!-- Bootstrap core JavaScript -->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
+@endsection
+
+
+@section('javascript')
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("#form_usuario").validate({
+            rules: {
+                nome: {
+                    required: true
+                },
+                senha: {
+                    required: true
+                },
+                logon: {
+                    required: true
+                },
+                tipo: {
+                    required: true
+                },
+          },
+          messages: {
+            nome: {
+                    required: "Digite o nome do usuário",
+                },
+                senha: {
+                    required: "Digite a senha do usuário",
+                },
+                logon: {
+                    required: "Digite o login do usuário",
+                },
+                tipo: {
+                    required: "Selecione o tipo do usuário",
+                },
+          },
+    submitHandler: function(form) {
+        form.submit();
+    }
+});
+    });
+    </script>
 @endsection

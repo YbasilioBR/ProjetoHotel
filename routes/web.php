@@ -17,7 +17,7 @@ use App\QuartoTarefas;
 
 
 Route::get('/', function () {
-    return view('Welcome');
+    return view('Principal');
 });
 
 Route::get('home', function () {
@@ -32,9 +32,8 @@ Route::get('/usuarios/apagar/{id}', 'UsuarioController@destroy');
 Route::get('/usuarios/editar/{id_usuario}', 'UsuarioController@edit');
 Route::post('/usuarios/{id_usuario}', 'UsuarioController@update');
 
-
-
 Route::get('/tarefas/novo', 'TarefaController@create');
+Route::get('/tarefas', 'TarefaController@index');
 Route::post('/tarefas', 'TarefaController@store');
 Route::get('/tarefas/apagar/{id_tarefa}', 'TarefaController@destroy');
 Route::get('/tarefas/editar/{id_tarefa}', 'TarefaController@edit');
@@ -46,20 +45,3 @@ Route::post('/quartos', 'QuartoLimpoController@store');
 Route::get('/quartos/apagar/{id_quartolimpo}', 'QuartoLimpoController@destroy');
 Route::get('/quartos/editar/{id_quartolimpo}', 'QuartoLimpoController@edit');
 Route::post('/quartos/{id_quartolimpo}', 'QuartoLimpoController@update');
-
-
-
-Route::get('/', "HomeController@index");
-Route::post('/login', "HomeController@login");
-
-Route::group(['middleware'=>['auth']],function(){
-    Route::get('/logout',function(){
-        Auth::logout();
-        return redirect()->route('login');
-    });
-    Route::get('/tarefas', 'TarefaController@index');
-});
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');

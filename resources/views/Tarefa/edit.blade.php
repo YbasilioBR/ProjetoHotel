@@ -3,7 +3,7 @@
 
 <div class="card border">
     <div class="card-body">
-            <form action="/tarefas/{{$tarefa->id_tarefa}}" method="POST">
+            <form id="form_tarefa" action="/tarefas/{{$tarefa->id_tarefa}}" method="POST">
             @csrf
             <div class="form-group">
                 <label for="descricao">Descricao</label>
@@ -11,14 +11,31 @@
             id="descricao" placeholder="descricao" value="{{$tarefa->descricao}}">
         </div>
             <button type="submit" class="btn btn-primary btn-sm">Salvar</button>
-            <button type="cancel" class="btn btn-danger btn-sm">Cancel</button>
+            <a href="/tarefas" type="cancel" class="btn btn-danger">Cancelar</a>
            
         </form>
     </div>
 </div>
 
-    <!-- Bootstrap core JavaScript -->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
+@endsection
+@section('javascript')
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("#form_tarefa").validate({
+            rules: {
+                descricao: {
+                    required: true
+                },
+          },
+          messages: {
+            descricao: {
+                    required: "Digite a descrição da terefa",
+                },
+          },
+    submitHandler: function(form) {
+        form.submit();
+    }
+});
+    });
+    </script>
 @endsection

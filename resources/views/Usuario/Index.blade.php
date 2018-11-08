@@ -34,7 +34,7 @@
 </div>
 
         <div class="card-footer">
-            <a href="/usuarios/novo" class="btn btn-sm btn-primary" role="button">Nova categoria</a>
+            <a href="/usuarios/novo" class="btn btn-success" role="button">Novo Usuário</a>
         </div>
 
 @endsection

@@ -30,7 +30,7 @@
   </div>
   
           <div class="card-footer">
-              <a href="/tarefas/novo" class="btn btn-sm btn-primary" role="button">Nova categoria</a>
+              <a href="/tarefas/novo" class="btn btn-success" role="button">Nova Tarefa</a>
           </div>
   
   @endsection
