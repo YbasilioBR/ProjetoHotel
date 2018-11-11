@@ -17,13 +17,12 @@ use App\QuartoTarefas;
 
 
 Route::get('/', function () {
-    return view('Principal');
+    return view('LoginPrincipal');
 });
 
-Route::get('home', function () {
-    return view('Principal');
-});
 
+Route::get('/login', 'LoginUsuarioController@index');
+Route::post('/login', 'LoginUsuarioController@ValidarLogin');
 
 Route::get('/usuarios', 'UsuarioController@index');
 Route::get('/usuarios/novo', 'UsuarioController@create');
