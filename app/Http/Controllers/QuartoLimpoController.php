@@ -15,7 +15,7 @@ class QuartoLimpoController extends Controller
      */
     public function index()
     {
-        $quartos = QuartoLimpo::all();        
+        $quartos = QuartoLimpo::paginate(5);     
         return view('QuartoLimpo.index', compact('quartos'));
     }
 

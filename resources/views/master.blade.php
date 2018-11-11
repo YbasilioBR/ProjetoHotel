@@ -13,36 +13,57 @@
 
   </head>
   <body>
-  <div id="wrapper">
+     
 
-               <!-- Sidebar -->
-        <div id="sidebar-wrapper">
-            <ul class="sidebar-nav">
-                <li class="sidebar-brand">
-                    <a href="#">
-                        Sistema hotel
-                    </a>
-                </li>
-                <li>
-                    <a href="home">Home</a>
-                </li>
-                <li>
-                    <a href="usuarios">Usuários</a>
-                </li>
-                <li>
-                    <a href="tarefas">Tarefa</a>
-                </li>
-                <li>
-                    <a href="quartos">Quarto Limpo</a>
-                </li>
-                <li>
-                    <a href="#">Relatórios</a>
-                </li>
-            </ul>
-        </div>
-        
-        @yield('content')
+        <div class="row no-gutters" id="conteudo">
+                <div class="menuVertical longBarVertical">
+                        <ul class="sidebar-nav">
+                                <a class="navbar-brand">Sistema Hotel</a>
+                                <li>
+                                    <a href="home">Home</a>
+                                </li>
+                                <li>
+                                    <a href="usuarios">Usuários</a>
+                                </li>
+                                <li>
+                                    <a href="tarefas">Tarefa</a>
+                                </li>
+                                <li>
+                                    <a href="quartos">Quarto Limpo</a>
+                                </li>
+                                <li>
+                                    <a href="#">Relatórios</a>
+                                </li>
+                            </ul>
+                </div>
+                <div class="col">
+                        <nav id="nav-menu" class="navbar justify-content-between">
+                                <span class="navbar-brand">Seja Bem-vindo Hotel</span>
+                                <form class="form-inline">
+                                  <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Logout</button>
+                                </form>
+                        </nav>
 
+                        @yield('content')
+                </div>    
+                
+                
+
+             </div>      
+             
+             
+             <!--
+             <footer id="footer" class="page-footer font-small blue">
+
+                 
+                    <div class="footer-copyright text-center py-3">
+                        Desenvolvido por Ygor Basilio - 2018
+                    </div>
+                  
+                  
+                  </footer> -->
+
+            
 
         <script src="/js/jquery.min.js"></script>
         <script src="/js/bootstrap.bundle.min.js"></script>
@@ -52,6 +73,6 @@
 
 
 
-</div>
+
     </body>
 </html>

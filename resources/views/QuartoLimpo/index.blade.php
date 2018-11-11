@@ -17,12 +17,14 @@
         </tr>
     </thead>
     <tbody>
+    
         @foreach($quartos as $quarto)
+        
         <tr>
             <td>{{$quarto->numeroQuarto}}</td>
             <td>{{$quarto->usuarios->nome}}</td>
-            <td>{{$quarto->dataInicio}}</td>
-            <td>{{$quarto->dataFim}}</td>
+            <td >{{date('d/m/Y h:i:s', strtotime($quarto->dataInicio))}}</td>
+            <td >{{date('d/m/Y h:i:s', strtotime($quarto->dataFim))}}</td>
             <td><button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modalTarefas">Tarefas</button></td>
             <td>
                 <a href="/quartos/editar/{{$quarto->id_quartolimpo}}" class="btn btn-sm btn-primary">Editar</a>
@@ -56,8 +58,8 @@
                       </tbody>
                       
                   </table>
-              
             </div>
+            
             <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
               <button type="button" class="btn btn-primary">Gravar</button>
@@ -65,12 +67,19 @@
           </div>
         </div>
       </div>
-    
-  </div>
-</div>
+      <div class="card-footer">
+            
+            <nav  class="navbar justify-content-between">
+                    <a href="/quartos/novo" class="btn btn-success" role="button">Novo Quarto</a>
+                    <form class="form-inline">
+                      {{$quartos->links()}}
+                    </form>
+            </nav>
 
-        <div class="card-footer">
-            <a href="/quartos/novo" class="btn btn-sm btn-primary" role="button">Nova categoria</a>
-        </div>
+  </div>
+</div>  
+
+
+
 
 @endsection

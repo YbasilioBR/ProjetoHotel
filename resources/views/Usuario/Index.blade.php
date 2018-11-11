@@ -1,7 +1,7 @@
 @extends('master')
 @section('content')
 
-<div class="card border">
+<div class="card border" style="margin-right: 15px">
   <div class="card-body">
       <h5 class="card-title">Cadastro de Usuarios</h5>
 @if(count($usuarios) > 0)
@@ -28,13 +28,18 @@
         @endforeach                
     </tbody>
     </table>
-    @endif  
-    
+    @endif    
   </div>
 </div>
+<div class="card-footer">
+            
+        <nav  class="navbar justify-content-between">
+                <a href="/usuarios/novo" class="btn btn-success" role="button">Novo Usuário</a>
+                <form class="form-inline">
+                  {{$usuarios->links()}}
+                </form>
+        </nav>
 
-        <div class="card-footer">
-            <a href="/usuarios/novo" class="btn btn-success" role="button">Novo Usuário</a>
-        </div>
+</div>
 
 @endsection

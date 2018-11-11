@@ -13,24 +13,31 @@
           </tr>
       </thead>
       <tbody>
-          @foreach($tarefas as $tarefas)
+          @foreach($tarefas as $tarefa)
           <tr>
-              <td>{{$tarefas->descricao}}</td>
+              <td>{{$tarefa->descricao}}</td>
               <td>
-                  <a href="/tarefas/editar/{{$tarefas->id_tarefa}}" class="btn btn-sm btn-primary">Editar</a>
-                  <a href="/tarefas/apagar/{{$tarefas->id_tarefa}}" class="btn btn-sm btn-danger">Apagar</a>
+                  <a href="/tarefas/editar/{{$tarefa->id_tarefa}}" class="btn btn-sm btn-primary">Editar</a>
+                  <a href="/tarefas/apagar/{{$tarefa->id_tarefa}}" class="btn btn-sm btn-danger">Apagar</a>
               </td>
           </tr>
           @endforeach                
       </tbody>
       </table>
       @endif  
-      
+
     </div>
   </div>
   
-          <div class="card-footer">
-              <a href="/tarefas/novo" class="btn btn-success" role="button">Nova Tarefa</a>
-          </div>
+  <div class="card-footer">
+            
+        <nav  class="navbar justify-content-between">
+                <a href="/tarefas/novo" class="btn btn-success" role="button">Nova Tarefa</a>
+                <form class="form-inline">
+                  {{$tarefas->links()}}
+                </form>
+        </nav>
+
+</div>
   
   @endsection

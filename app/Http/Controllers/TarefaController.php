@@ -14,7 +14,7 @@ class TarefaController extends Controller
      */
     public function index()
     {
-        $tarefas = Tarefa::all();
+        $tarefas = Tarefa::paginate(5);
         return view('Tarefa.index', compact('tarefas'));
     }
 

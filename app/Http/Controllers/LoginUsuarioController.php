@@ -3,23 +3,26 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-USE DB;
+use DB;
 
 class LoginUsuarioController extends Controller
 {
     public function index()    {
-
+        $request->session()->forget('id_usuario');
         return view('LoginPrincipal');
     }
 
     public function ValidarLogin(Request $request)
     {
-        $usuario = $request->input('logon');
+        $logon = $request->input('logon');
         $senha = $request->input('senha');
 
-        $usuario = DB::table('usuario')->where('logon', $usuario )->where('senha', $senha)->first();
+        $usuario = DB::table('usuario')->where('logon', $logon )->where('senha', $senha)->first();
 
         if(isset($usuario)) {
+            $request->session()->put('id_usuario', $usuario->id_usuario);
+            $request->session()->put('nome', $usuario->nome);
+            $request->session()->put('tipo', $usuario->tipo);
            return view('Principal');
         }else{
             echo "Deu Ruim!";

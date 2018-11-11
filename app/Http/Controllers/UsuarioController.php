@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Usuario;
 use Illuminate\Http\Request;
+use Session;
 
 class UsuarioController extends Controller
 {
@@ -13,9 +14,13 @@ class UsuarioController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        $usuarios = Usuario::all();
-        return view('Usuario.index', compact('usuarios'));
+    {        
+        if (Session::get('id_usuario') > 0){
+            $usuarios = Usuario::paginate(5);
+            return view('Usuario.index', compact('usuarios'));
+        }else{
+            return view('LoginPrincipal');   
+        }        
     }
 
     /**
