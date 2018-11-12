@@ -48,14 +48,18 @@ class QuartoTarefasController extends Controller
      */
     public function show($id_quarto_limpo)
     {
-        $quartostarefas = DB::table('quarto_tarefas')
-        ->join('tarefa', 'quarto_tarefas.id_tarefa', '=', 'tarefa.id_tarefa')
-        ->join('quarto_limpo', 'quarto_tarefas.id_quartolimpo', '=', 'quarto_limpo.id_quartolimpo')
-        ->select(DB::raw('quarto_tarefas.id_tarefa, tarefa.descricao' ))
-        ->where('quarto_tarefas.id_quartolimpo','=',$id_quarto_limpo)
-        ->get();
+        if (Session::get('id_usuario') > 0){
+            $quartostarefas = DB::table('quarto_tarefas')
+            ->join('tarefa', 'quarto_tarefas.id_tarefa', '=', 'tarefa.id_tarefa')
+            ->join('quarto_limpo', 'quarto_tarefas.id_quartolimpo', '=', 'quarto_limpo.id_quartolimpo')
+            ->select(DB::raw('quarto_tarefas.id_tarefa, tarefa.descricao' ))
+            ->where('quarto_tarefas.id_quartolimpo','=',$id_quarto_limpo)
+            ->get();
 
-        return View::make('QuartoTarefa.show')->with('quartostarefas', $quartostarefas);
+            return View::make('QuartoTarefa.show')->with('quartostarefas', $quartostarefas);
+        }else{
+            return redirect()->route('pagina.login');
+        }
     }
 
     /**

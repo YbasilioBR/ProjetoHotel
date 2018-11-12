@@ -15,8 +15,12 @@ class TarefaController extends Controller
      */
     public function index()
     {
-        $tarefas = Tarefa::paginate(5);
-        return view('Tarefa.index', compact('tarefas'));
+        if (Session::get('id_usuario') > 0){
+            $tarefas = Tarefa::paginate(5);
+            return view('Tarefa.index', compact('tarefas'));
+        }else{
+            return redirect()->route('pagina.login');
+        }
     }
 
     /**

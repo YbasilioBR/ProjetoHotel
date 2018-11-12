@@ -15,8 +15,12 @@ class QuartoLimpoController extends Controller
      */
     public function index()
     {
-        $quartos = QuartoLimpo::paginate(5);     
-        return view('QuartoLimpo.index', compact('quartos'));
+        if (Session::get('id_usuario') > 0){
+            $quartos = QuartoLimpo::paginate(5);     
+            return view('QuartoLimpo.index', compact('quartos'));
+        }else{
+            return redirect()->route('pagina.login');
+        }
     }
 
     /**
@@ -26,7 +30,11 @@ class QuartoLimpoController extends Controller
      */
     public function create()
     {        
-        return view('QuartoLimpo.create');
+        if (Session::get('id_usuario') > 0){
+            return view('QuartoLimpo.create');
+        }else{
+            return redirect()->route('pagina.login');
+        }
 
     }
 
