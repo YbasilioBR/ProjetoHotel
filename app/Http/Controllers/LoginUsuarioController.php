@@ -8,7 +8,7 @@ use DB;
 class LoginUsuarioController extends Controller
 {
     public function index()    {
-        $request->session()->forget('id_usuario');
+    
         return view('LoginPrincipal');
     }
 
@@ -23,9 +23,9 @@ class LoginUsuarioController extends Controller
             $request->session()->put('id_usuario', $usuario->id_usuario);
             $request->session()->put('nome', $usuario->nome);
             $request->session()->put('tipo', $usuario->tipo);
-           return view('Principal');
+            return redirect()->route('principal');
         }else{
-            echo "Deu Ruim!";
+            return redirect()->route('pagina.login');
         }        
 
     }

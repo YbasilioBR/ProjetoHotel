@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Session;
 
 class HomeController extends Controller
 {
@@ -11,10 +12,6 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->middleware('auth:usuario');
-    }
 
     /**
      * Show the application dashboard.
@@ -22,7 +19,12 @@ class HomeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        return view('Principal');
+    {   
+        if (Session::get('id_usuario') > 0){
+            return view('Principal');
+        }else{
+            return redirect()->route('pagina.login');
+        }
+        
     }
 }

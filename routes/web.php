@@ -21,7 +21,9 @@ Route::get('/', function () {
 });
 
 
-Route::get('/login', 'LoginUsuarioController@index');
+Route::get('/home', 'HomeController@index')->name('principal');
+
+Route::get('/login', 'LoginUsuarioController@index')->name('pagina.login');;
 Route::post('/login', 'LoginUsuarioController@ValidarLogin');
 
 Route::get('/usuarios', 'UsuarioController@index');
@@ -44,3 +46,5 @@ Route::post('/quartos', 'QuartoLimpoController@store');
 Route::get('/quartos/apagar/{id_quartolimpo}', 'QuartoLimpoController@destroy');
 Route::get('/quartos/editar/{id_quartolimpo}', 'QuartoLimpoController@edit');
 Route::post('/quartos/{id_quartolimpo}', 'QuartoLimpoController@update');
+
+Route::get('/relatorios', 'RelatorioController@index');

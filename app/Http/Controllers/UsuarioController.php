@@ -19,7 +19,7 @@ class UsuarioController extends Controller
             $usuarios = Usuario::paginate(5);
             return view('Usuario.index', compact('usuarios'));
         }else{
-            return view('LoginPrincipal');   
+            return redirect()->route('pagina.login');
         }        
     }
 
@@ -30,7 +30,11 @@ class UsuarioController extends Controller
      */
     public function create()
     {
-        return view('Usuario.create');
+        if (Session::get('id_usuario') > 0){
+            return view('Usuario.create');
+        }else{
+            return redirect()->route('pagina.login');
+        }
     }
 
     /**
@@ -105,16 +109,24 @@ class UsuarioController extends Controller
      */
     public function destroy($id_usuario)
     {
-        $usuario = Usuario::find($id_usuario);
-        if (isset($usuario)) {
-            $usuario->delete();
+        if (Session::get('id_usuario') > 0){
+            $usuario = Usuario::find($id_usuario);
+            if (isset($usuario)) {
+                $usuario->delete();
+            }
+             return redirect('/usuarios');
+        }else{
+            return redirect()->route('pagina.login');
         }
-        return redirect('/usuarios');
     }
 
     public function indexJson()
     {
-        $usuarios = Usuario::all();
-        return json_encode($usuarios);
+        if (Session::get('id_usuario') > 0){
+            $usuarios = Usuario::all();
+            return json_encode($usuarios);
+        }else{
+            return redirect()->route('pagina.login');
+        }
     }
 }

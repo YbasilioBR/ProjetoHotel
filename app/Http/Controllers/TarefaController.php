@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Tarefa;
 use Illuminate\Http\Request;
+use DB;
 
 class TarefaController extends Controller
 {
@@ -103,6 +104,12 @@ class TarefaController extends Controller
     public function indexJson()
     {
         $tarefas = Tarefa::all();
+        return json_encode($tarefas);
+    }
+
+    public function JsonIdTarefas($id_tarefa)
+    {
+        $tarefas = Tarefa::find($id_tarefa);
         return json_encode($tarefas);
     }
 }

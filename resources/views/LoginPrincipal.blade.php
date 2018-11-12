@@ -9,72 +9,36 @@
 
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" />
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="/css/base-style.css" />
+    <link rel="stylesheet" href="/css/login-style.css" />
 
   </head>
-  <body>
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Login</div>
-
-                <div class="card-body">
-                    <form method="POST" action="/login">
-                        @csrf
-
-                        <div class="form-group row">
-                            <label for="logon" class="col-sm-4 col-form-label text-md-right">Login</label>
-
-                            <div class="col-md-6">
-                                <input id="logon" type="text" class="form-control" name="logon" required autofocus>
-
-                                @if ($errors->has('logon'))
-                                    <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('logon') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="senha" class="col-md-4 col-form-label text-md-right">Senha</label>
-
-                            <div class="col-md-6">
-                                <input id="senha" type="senha" class="form-control{{ $errors->has('senha') ? ' is-invalid' : '' }}" name="senha" required>
-
-                                @if ($errors->has('senha'))
-                                    <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('senha') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                    <!--    <div class="form-group row">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> {{ __('Remember Me') }}
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
--->
-                        <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Login
-                                </button>
-                            </div>
-                        </div>
-
-                        
-                    </form>
+  <body id="LoginForm">
+        <div class="container">
+        <div class="login-form">
+        <div class="main-div">
+            <div class="panel">
+           <h2>Sistema Hotel</h2>
+           <p>Informe seu usuário e senha para acessar</p>
+           </div>
+           <form method="POST" action="/login">
+            @csrf
+                <div class="form-group">      
+        
+                    <input type="text" class="form-control" id="logon" name="logon" placeholder="Login">
+        
                 </div>
+        
+                <div class="form-group">
+        
+                    <input type="password" class="form-control" id="senha" name="senha" placeholder="Senha">
+        
+                </div>
+       
+                <button type="submit" class="btn btn-primary">Login</button>
+        
+            </form>
             </div>
-        </div>
-    </div>
-</div>
-  </body>
+       
+        </div></div></div>
+  </body>        
 </html>

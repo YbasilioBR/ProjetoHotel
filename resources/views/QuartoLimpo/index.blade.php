@@ -3,7 +3,7 @@
 
 <div class="card border">
   <div class="card-body">
-      <h5 class="card-title">Cadastro de Usuarios</h5>
+      <h5 class="card-title">Lista de Quartos</h5>
 @if(count($quartos) > 0)
 <table class="table table-ordered table-hover">
     <thead>
@@ -25,9 +25,8 @@
             <td>{{$quarto->usuarios->nome}}</td>
             <td >{{date('d/m/Y h:i:s', strtotime($quarto->dataInicio))}}</td>
             <td >{{date('d/m/Y h:i:s', strtotime($quarto->dataFim))}}</td>
-            <td><button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modalTarefas">Tarefas</button></td>
+            <td><button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modalTarefas" onclick="carregaTarefas({{$quarto->id_quartolimpo}})">Tarefas</button></td>
             <td>
-                <a href="/quartos/editar/{{$quarto->id_quartolimpo}}" class="btn btn-sm btn-primary">Editar</a>
                 <a href="/quartos/apagar/{{$quarto->id_quartolimpo}}" class="btn btn-sm btn-danger">Apagar</a>
             </td>
         </tr>
@@ -53,8 +52,7 @@
                           <th scope="">Descricao</th>
                       </tr>
                       </thead>
-                      <tbody>
-                              
+                      <tbody id="corpo">                              
                       </tbody>
                       
                   </table>
@@ -77,9 +75,22 @@
             </nav>
 
   </div>
-</div>  
+</div>
 
+@endsection
 
+@section('javascript')
+    <script type="text/javascript">
 
-
+            function carregaTarefas(id){
+            $.getJSON('/api/tarefas/'+id+'', function(data) {
+                    console.log(data);
+                for(i=0; i<data.length; i++){
+                    
+                    $('#corpo').append('<tr><td><input type="checkbox" name="tarefas[]" value="'+data[i].id_tarefa+'"></td><td>'+data[i].descricao+'</td></tr>');
+                    
+                }
+            });
+            }
+        </script>
 @endsection

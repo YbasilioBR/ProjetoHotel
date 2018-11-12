@@ -17,28 +17,44 @@
 
         <div class="row no-gutters" id="conteudo">
                 <div class="menuVertical longBarVertical">
+                    @if(Session::get('tipo') == 1)
                         <ul class="sidebar-nav">
-                                <a class="navbar-brand">Sistema Hotel</a>
+                                <li>
+                                    <a class="navbar-brand">Sistema Hotel</a>
+                                </li>
+                                <li>
+                                    <a href="/home">Home</a>
+                                </li>
+                                <li>
+                                    <a href="/usuarios">Usuários</a>
+                                </li>
+                                <li>
+                                    <a href="/tarefas">Tarefa</a>
+                                </li>
+                                <li>
+                                    <a href="/quartos">Quarto Limpo</a>
+                                </li>
+                                <li>
+                                    <a href="/relatorios">Relatórios</a>
+                                </li>
+                            </ul>
+                        @else
+                            <ul class="sidebar-nav">
+                                <li>
+                                    <a class="navbar-brand">Sistema Hotel</a>
+                                </li>
                                 <li>
                                     <a href="home">Home</a>
                                 </li>
                                 <li>
-                                    <a href="usuarios">Usuários</a>
-                                </li>
-                                <li>
-                                    <a href="tarefas">Tarefa</a>
-                                </li>
-                                <li>
                                     <a href="quartos">Quarto Limpo</a>
                                 </li>
-                                <li>
-                                    <a href="#">Relatórios</a>
-                                </li>
                             </ul>
+                        @endif
                 </div>
                 <div class="col">
                         <nav id="nav-menu" class="navbar justify-content-between">
-                                <span class="navbar-brand">Seja Bem-vindo Hotel</span>
+                                <span class="navbar-brand">{{"Seja bem vindo ". Session::get('nome')}}</span>
                                 <form class="form-inline">
                                   <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Logout</button>
                                 </form>

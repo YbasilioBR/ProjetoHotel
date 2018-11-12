@@ -29,7 +29,7 @@
                 <select>
             </div>
             <button type="submit" class="btn btn-primary btn-sm">Salvar</button>
-            <button type="cancel" class="btn btn-danger btn-sm">Cancel</button>
+            <a href="/usuarios" class="btn btn-danger btn-sm">Cancel</a>
         </form>
     </div>
 </div>
@@ -38,41 +38,24 @@
 
 
 @section('javascript')
-<script type="text/javascript">
-    $(document).ready(function(){
-        $("#form_usuario").validate({
-            rules: {
-                nome: {
-                    required: true
-                },
-                senha: {
-                    required: true
-                },
-                logon: {
-                    required: true
-                },
-                tipo: {
-                    required: true
-                },
-          },
-          messages: {
-            nome: {
-                    required: "Digite o nome do usuário",
-                },
-                senha: {
-                    required: "Digite a senha do usuário",
-                },
-                logon: {
-                    required: "Digite o login do usuário",
-                },
-                tipo: {
-                    required: "Selecione o tipo do usuário",
-                },
-          },
-    submitHandler: function(form) {
-        form.submit();
-    }
+    <script type="text/javascript">
+        $("#form_usuario").submit(function() {
+        if ($("#nome").val() == "") {
+            alert("Digite o nome do usuário");
+            return false;
+        }
+        if ($("#logon").val() == "") {
+            alert("Digite o logon do usuário");
+            return false;
+        }
+        if ($("#senha").val() == "") {
+            alert("Digite a senha do usuário");
+            return false;
+        }
+        if ($("#tipo").val() == "") {
+            alert("Selecione o tipo do usuário");
+            return false;
+        }
 });
-    });
     </script>
 @endsection

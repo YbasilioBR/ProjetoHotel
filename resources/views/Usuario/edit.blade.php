@@ -44,40 +44,23 @@
 
 @section('javascript')
 <script type="text/javascript">
-    $(document).ready(function(){
-        $("#form_usuario").validate({
-            rules: {
-                nome: {
-                    required: true
-                },
-                senha: {
-                    required: true
-                },
-                logon: {
-                    required: true
-                },
-                tipo: {
-                    required: true
-                },
-          },
-          messages: {
-            nome: {
-                    required: "Digite o nome do usuário",
-                },
-                senha: {
-                    required: "Digite a senha do usuário",
-                },
-                logon: {
-                    required: "Digite o login do usuário",
-                },
-                tipo: {
-                    required: "Selecione o tipo do usuário",
-                },
-          },
-    submitHandler: function(form) {
-        form.submit();
+    $("#form_usuario").submit(function() {
+    if ($("#nome").val() == "") {
+        alert("Digite o nome do usuário");
+        return false;
+    }
+    if ($("#logon").val() == "") {
+        alert("Digite o logon do usuário");
+        return false;
+    }
+    if ($("#senha").val() == "") {
+        alert("Digite a senha do usuário");
+        return false;
+    }
+    if ($("#tipo").val() == "") {
+        alert("Selecione o tipo do usuário");
+        return false;
     }
 });
-    });
-    </script>
+</script>
 @endsection

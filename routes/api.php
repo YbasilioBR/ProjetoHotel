@@ -19,3 +19,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get('usuarios/', 'UsuarioController@IndexJson');
 Route::get('tarefas/', 'TarefaController@IndexJson');
+Route::get('tarefas/{id}', 'TarefaController@JsonIdTarefas');

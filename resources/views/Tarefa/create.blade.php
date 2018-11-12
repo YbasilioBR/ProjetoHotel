@@ -19,23 +19,12 @@
 @endsection
 
 @section('javascript')
-<script type="text/javascript">
-    $(document).ready(function(){
-        $("#form_tarefa").validate({
-            rules: {
-                descricao: {
-                    required: true
-                },
-          },
-          messages: {
-            descricao: {
-                    required: "Digite a descrição da terefa",
-                },
-          },
-    submitHandler: function(form) {
-        form.submit();
-    }
+    <script type="text/javascript">
+        $("#form_tarefa").submit(function() {
+        if ($("#descricao").val() == "") {
+            alert("Digite a descrição da tarefa");
+            return false;
+        }
 });
-    });
     </script>
 @endsection
