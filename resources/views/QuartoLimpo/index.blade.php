@@ -25,7 +25,7 @@
             <td>{{$quarto->usuarios->nome}}</td>
             <td >{{date('d/m/Y h:i:s', strtotime($quarto->dataInicio))}}</td>
             <td >{{date('d/m/Y h:i:s', strtotime($quarto->dataFim))}}</td>
-            <td><button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modalTarefas" onclick="carregaTarefas({{$quarto->id_quartolimpo}})">Tarefas</button></td>
+            <td><a href="/quartoTarefa/{{$quarto->id_quartolimpo}}" class="btn btn-sm btn-primary">Tarefas</a></td>
             <td>
                 <a href="/quartos/apagar/{{$quarto->id_quartolimpo}}" class="btn btn-sm btn-danger">Apagar</a>
             </td>

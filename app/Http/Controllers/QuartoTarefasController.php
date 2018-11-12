@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\QuartoTarefas;
 use Illuminate\Http\Request;
+use DB;
+use View;
 
 class QuartoTarefasController extends Controller
 {
@@ -44,9 +46,16 @@ class QuartoTarefasController extends Controller
      * @param  \App\QuartoTarefas  $quartoTarefas
      * @return \Illuminate\Http\Response
      */
-    public function show(QuartoTarefas $quartoTarefas)
+    public function show($id_quarto_limpo)
     {
-        //
+        $quartostarefas = DB::table('quarto_tarefas')
+        ->join('tarefa', 'quarto_tarefas.id_tarefa', '=', 'tarefa.id_tarefa')
+        ->join('quarto_limpo', 'quarto_tarefas.id_quartolimpo', '=', 'quarto_limpo.id_quartolimpo')
+        ->select(DB::raw('quarto_tarefas.id_tarefa, tarefa.descricao' ))
+        ->where('quarto_tarefas.id_quartolimpo','=',$id_quarto_limpo)
+        ->get();
+
+        return View::make('QuartoTarefa.show')->with('quartostarefas', $quartostarefas);
     }
 
     /**

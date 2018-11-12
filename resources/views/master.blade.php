@@ -20,7 +20,7 @@
                     @if(Session::get('tipo') == 1)
                         <ul class="sidebar-nav">
                                 <li>
-                                    <a class="navbar-brand">Sistema Hotel</a>
+                                    <a class="navbar-brand" style="color:white;">Sistema Hotel</a>
                                 </li>
                                 <li>
                                     <a href="/home">Home</a>
@@ -41,7 +41,7 @@
                         @else
                             <ul class="sidebar-nav">
                                 <li>
-                                    <a class="navbar-brand">Sistema Hotel</a>
+                                    <a class="navbar-brand" style="color:white;">Sistema Hotel</a>
                                 </li>
                                 <li>
                                     <a href="home">Home</a>
@@ -54,9 +54,9 @@
                 </div>
                 <div class="col">
                         <nav id="nav-menu" class="navbar justify-content-between">
-                                <span class="navbar-brand">{{"Seja bem vindo ". Session::get('nome')}}</span>
+                                <span class="navbar-brand">{{"Seja bem vindo: ". Session::get('nome')}}</span>
                                 <form class="form-inline">
-                                  <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Logout</button>
+                                  <a href="/logout" class="btn btn-danger" type="submit">Logout</a>
                                 </form>
                         </nav>
 

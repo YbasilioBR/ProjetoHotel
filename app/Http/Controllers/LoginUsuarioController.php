@@ -29,4 +29,11 @@ class LoginUsuarioController extends Controller
         }        
 
     }
+
+    public function Logout(Request $request){
+        $request->session()->forget('id_usuario');
+        $request->session()->forget('nome');
+        $request->session()->forget('tipo');
+        return redirect()->route('pagina.login');
+    }
 }
